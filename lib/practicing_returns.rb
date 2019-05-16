@@ -1,4 +1,4 @@
-require 'pry'
+array = ["Tim", "Tom", "Jim"]
 
 def hello(array)
   i = 0
@@ -9,5 +9,16 @@ def hello(array)
   end
   collection
 end
+hello(array) { |name| "Hi, #{name}" }
 
-hello(["Tim", "Tom", "Jim"]) { |name| puts "Hi, #{name}" }
+def hello_2(array)
+  collection = []
+  array.each {|person| collection << yield(person)}
+end
+hello_2(array) { |name| "Hi, #{name}" }
+
+def hello_3(array)
+  array.collect {|person| yield(person)}
+end
+
+hello_3(array) { |name| "Hi, #{name}" }
